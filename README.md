@@ -1,72 +1,62 @@
-# Story Generator Streamlit App
+# Story Generator
 
-This Streamlit app uses the Google Generative AI API to generate stories based on user prompts. Users can input a prompt, generate a story, and clear the response.
+A Streamlit web app that turns a short text prompt into a 3-act story (under 500 words) using Google's Gemini API.
+
+## Features
+
+- Enter any topic and generate a 3-act story with one click
+- Clear the response and try a new prompt
+- Automatic retry when the model is temporarily busy (503 errors)
+- Friendly messages for rate limits and API errors
+
+## Tech Stack
+
+Python, Streamlit, Gemini API (REST via `requests`), python-dotenv
 
 ## Getting Started
 
-To run the app locally, follow these steps:
-
 ### Prerequisites
 
-Make sure you have Python 3.9 or newer and pip installed on your system.
+- Python 3.9 or newer
+- A Gemini API key from [Google AI Studio](https://aistudio.google.com)
 
 ### Installation
-Clone the repository:
+
 ```bash
 git clone https://github.com/Rishi-Kollabathula/story-generator.git
-```
-
-Navigate to the project directory:
-```bash
 cd story-generator
-```
-
-Install dependencies:
-```bash
-python -m pip install --upgrade pip
+python -m venv venv
+venv\Scripts\activate        # Windows
+# source venv/bin/activate   # Mac / Linux
 python -m pip install -r requirements.txt
 ```
 
-### Running the App
-Run the Streamlit app:
-
-```bash
-streamlit run app.py
-```
-
-The app will be accessible in your web browser at http://localhost:8501.
-
-### Usage
-Enter a prompt in the provided text input.
-Click the "Generate Story" button to generate a story based on the prompt.
-The generated story will be displayed under the prompt.
-Click the "Clear Response" button to clear the generated story.
-
 ### Configuration
-Create a file named `.env` in the project root and add your API key:
+
+Create a file named `.env` in the project folder and add your key:
 
 ```
 GEMINI_API_KEY=your_actual_api_key
 ```
 
-Replace `your_actual_api_key` with your real Gemini API key.
+Never commit your `.env` file. It is listed in `.gitignore`.
 
-### License
-This project is licensed under the MIT License - see the LICENSE file for details.
+### Run the app
 
-### Acknowledgments
-Google Generative AI
-Streamlit
-python-dotenv
+```bash
+python -m streamlit run app.py
+```
 
-Feel free to contribute and improve the app!
+Open http://localhost:8501 in your browser.
 
-vbnet
+## How It Works
 
+1. The user enters a topic in the text box.
+2. The app sends a prompt to the Gemini API: "Create a 3 act story of less than 500 words about ...".
+3. The generated story is shown on the page and kept in Streamlit session state until cleared.
 
-Replace `yourusername` in the repository URL with your actual GitHub username if you decide to host the code on GitHub. Adjust the content and structure as needed based on your preferences and additional information about the project.
+The app calls the Gemini REST endpoint with `requests` instead of the gRPC-based SDK, so it also runs on machines that block gRPC binaries.
 
+## Acknowledgments
 
-Tutorial at [gemini](https://www.kdnuggets.com/how-to-access-and-use-gemini-api-for-free)
-
-Learn [prompt engineering](https://arize.com/blog-course/evaluating-prompt-playground/)
+Google Gemini API, Streamlit, python-dotenv
