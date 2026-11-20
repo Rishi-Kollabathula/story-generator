@@ -8,26 +8,23 @@ To run the app locally, follow these steps:
 
 ### Prerequisites
 
-Make sure you have Python and pip installed on your system.
-
-```bash
-pip install streamlit
-```
+Make sure you have Python 3.9 or newer and pip installed on your system.
 
 ### Installation
 Clone the repository:
 ```bash
-git clone https://github.com/yourusername/story-generator-app.git
+git clone https://github.com/Rishi-Kollabathula/story-generator.git
 ```
 
 Navigate to the project directory:
 ```bash
-cd story-generator-app
+cd story-generator
 ```
 
 Install dependencies:
 ```bash
-pip install -r requirements.txt
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
 
 ### Running the App
@@ -46,12 +43,13 @@ The generated story will be displayed under the prompt.
 Click the "Clear Response" button to clear the generated story.
 
 ### Configuration
-Make sure to set up your API key for the Google Generative AI API by adding it to the .env file in the project root:
+Create a file named `.env` in the project root and add your API key:
 
-env
-
+```
 GEMINI_API_KEY=your_actual_api_key
-Replace your_actual_api_key with your real Gemini API key.
+```
+
+Replace `your_actual_api_key` with your real Gemini API key.
 
 ### License
 This project is licensed under the MIT License - see the LICENSE file for details.
